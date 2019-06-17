@@ -4,31 +4,42 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CodingExercise {
-	String s = "a => b => c =>";
-	String s2 = "a => b => c c =>";
+	static ArrayList<String> myList = new ArrayList<>();
 
-	public static ArrayList sequence(String job) {
-		List<String> myList = new ArrayList<>();
+	public static ArrayList<String> sequence(String job) {
+		myList.add(job);
+		return myList;
+	}
 
-		return null;
+
+	public static ArrayList<String> getMyList() {
+		System.out.println(myList);
+		return myList;
 	}
 
 	public static void main(String[] args) {
-		List<String> myList = new ArrayList();
-		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Entries : ");
+		System.out.println("Entries (Press 'ctrl d' to exit) : ");
 		while (sc.hasNextLine()) {
 			String rawLine = sc.nextLine();
-			//get only letters line by line
+			// get the letters line by line
+			String firstInput,secondInput;
+			// and concatenation in form of xy
+			String finalInput = null;
+			
 			String[] line = rawLine.split(" => ");
-				String firstInput = line[0];
-				String secondInput = line[1];
-				
-				//string concatenation in form of xy
-				String finalInput = firstInput + secondInput;
-				myList.add(finalInput);
+			if (line.length > 1) {
+				firstInput = line[0];
+				secondInput = line[1];
+				finalInput = firstInput + secondInput;
+			}
+			if (line.length == 1) {
+				firstInput = line[0];
+				finalInput = firstInput;
+			}
+			sequence(finalInput);
 		}
-		System.out.println(myList);
+		
+		getMyList();
 	}
 }
