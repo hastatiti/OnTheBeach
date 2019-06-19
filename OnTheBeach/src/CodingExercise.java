@@ -11,12 +11,31 @@ public class CodingExercise {
 		return myList;
 	}
 
-
 	public static ArrayList<String> getMyList() {
 		System.out.println(myList);
 		return myList;
 	}
-
+	
+	public static void checkCircular(List<String> myList) {
+		String s1 = null, s2 = null;
+		for (int i = 0; i < myList.size(); i++) {
+			if (i == myList.size() - 1)
+				break;
+			else {
+				s1 = myList.get(i);
+				s2 = myList.get(i+1);
+			//	System.out.println(s1 + " " + s2);
+				checkChar(s1,s2);
+			}
+		}
+	}
+	
+	public static void checkChar(String s1, String s2) {
+		StringBuilder sb;
+		char c1 = s1.charAt(0);
+		char c2 = s2.charAt(1);
+		System.out.println(c1 + " "+c2);
+	}
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Entries (Press 'ctrl d' to exit) : ");
@@ -40,6 +59,7 @@ public class CodingExercise {
 			sequence(finalInput);
 		}
 		
-		getMyList();
+		//getMyList();
+		checkCircular(getMyList());
 	}
 }
