@@ -17,6 +17,7 @@ public class CodingExercise {
 	}
 	
 	public static void checkCircular(List<String> myList) {
+		StringBuilder sb;
 		String s1 = null, s2 = null;
 		for (int i = 0; i < myList.size(); i++) {
 			if (i == myList.size() - 1)
@@ -24,18 +25,20 @@ public class CodingExercise {
 			else {
 				s1 = myList.get(i);
 				s2 = myList.get(i+1);
-			//	System.out.println(s1 + " " + s2);
-				checkChar(s1,s2);
+				if(checkChar(s1, s2)) {
+					System.out.println("equal");
+				}else System.out.println("not equal");
 			}
 		}
 	}
 	
-	public static void checkChar(String s1, String s2) {
-		StringBuilder sb;
+	public static boolean  checkChar(String s1, String s2) {
 		char c1 = s1.charAt(0);
 		char c2 = s2.charAt(1);
-		System.out.println(c1 + " "+c2);
+		System.out.println(c1 + " and " + c2);
+		return c1 == c2;
 	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Entries (Press 'ctrl d' to exit) : ");
