@@ -17,25 +17,33 @@ public class CodingExercise {
 	}
 	
 	public static void checkCircular(List<String> myList) {
-		StringBuilder sb;
+		String sb = "";
 		String s1 = null, s2 = null;
+		outerLoop:
 		for (int i = 0; i < myList.size(); i++) {
-			if (i == myList.size() - 1)
-				break;
-			else {
-				s1 = myList.get(i);
-				s2 = myList.get(i+1);
-				if(checkChar(s1, s2)) {
-					System.out.println("equal");
-				}else System.out.println("not equal");
+			for (int j = 0; i < myList.size(); j++) {
+				if (i == myList.size() - 1 || j == myList.size() - 1 ) break;
+				else  {
+					s1 = myList.get(i);
+					s2 = myList.get(j);
+					if (checkChar(s1, s2)) {
+						sb += s1 + s2;
+						System.out.println(sb);
+						int len = sb.length();
+						char a = sb.charAt(0);
+						char b = sb.charAt(len - 1);
+						if(a ==b) {System.out.println("Detected Circular !!!!"); break outerLoop;}
+					} else continue;
+				}
 			}
 		}
 	}
 	
 	public static boolean  checkChar(String s1, String s2) {
-		char c1 = s1.charAt(0);
-		char c2 = s2.charAt(1);
-		System.out.println(c1 + " and " + c2);
+		int len = s1.length();
+		char c1 = s1.charAt(len-1);
+		char c2 = s2.charAt(0);
+	//	System.out.println(c1 + " and " + c2);
 		return c1 == c2;
 	}
 	
