@@ -5,46 +5,90 @@ import java.util.Scanner;
 
 public class CodingExercise {
 	static ArrayList<String> myList = new ArrayList<>();
-
+	static ArrayList<String> theList = new ArrayList();
+	
+	//	list is in the form of 'a, bc, cf ...' without the signs
 	public static ArrayList<String> sequence(String job) {
 		myList.add(job);
 		return myList;
 	}
 
 	public static ArrayList<String> getMyList() {
-		System.out.println(myList);
 		return myList;
 	}
 	
+	public static ArrayList<String> firstElements(ArrayList<String> myList){
+	
+		for (int i = 0; i < myList.size(); i++) {
+			String a = myList.get(i);
+			char c = a.charAt(0);
+			String b = Character.toString(c);
+			theList.add(b);
+		}
+		return theList;
+	}
+	
+	public static ArrayList<String> orderedList(ArrayList<String> myList){
+		for (int i = 0; i < myList.size(); i++) {
+			String st = myList.get(i);
+			if(st.length() > 1) {
+				char c1 = st.charAt(0);
+				char c2 = st.charAt(1);
+				String a = Character.toString(c1);
+				String b = Character.toString(c2);
+				int k = theList.indexOf(a);
+				theList.add(k, b);
+			}
+		}
+		System.out.println(theList);
+		return theList;
+	}
+	
+	//	Check for circular dependencies. Exception thrown
 	public static void checkCircular(List<String> myList) {
 		String sb = "";
 		String s1 = null, s2 = null;
-		outerLoop:
+		
+		//	compare each element with others in the list such as
+		//	a, bc, cf ... 1) a with bc then cf 2) bc with a and cf ...
 		for (int i = 0; i < myList.size(); i++) {
 			for (int j = 0; i < myList.size(); j++) {
+				//	stop at last element
 				if (i == myList.size() - 1 || j == myList.size() - 1 ) break;
 				else  {
 					s1 = myList.get(i);
 					s2 = myList.get(j);
-					if (checkChar(s1, s2)) {
+					//	if elements in the list are not single letter call checkChar() method
+					//	compare 2 letters , last char with first char, if equal create a new string such as
+					//	ab, bc ,de  b==b new string is abbc now compare abbc with de c != e so stop
+					if (s1.length() > 1 && s2.length() > 1 && checkChar(s1, s2)) {
 						sb += s1 + s2;
 						System.out.println(sb);
-						int len = sb.length();
-						char a = sb.charAt(0);
-						char b = sb.charAt(len - 1);
-						if(a ==b) {System.out.println("Detected Circular !!!!"); break outerLoop;}
+						//	with the newly created string above call findCircular()
+						// check if the newly created string starts and ends with same char
+						if (findCircular(sb)) {
+							throw new IllegalArgumentException("Circular Detected !!!");
+						}
 					} else continue;
 				}
 			}
 		}
 	}
 	
+	//check last char of an element with first char of the other
 	public static boolean  checkChar(String s1, String s2) {
 		int len = s1.length();
 		char c1 = s1.charAt(len-1);
 		char c2 = s2.charAt(0);
-	//	System.out.println(c1 + " and " + c2);
 		return c1 == c2;
+	}
+	
+	//check if string starts and ends with same letter
+	public static boolean findCircular(String s) {
+		int len = s.length();
+		char a = s.charAt(0);
+		char b = s.charAt(len - 1);
+		return a ==b;
 	}
 	
 	public static void main(String[] args) {
@@ -58,19 +102,21 @@ public class CodingExercise {
 			String finalInput = null;
 			
 			String[] line = rawLine.split(" => ");
+			//get the 2 letters 
 			if (line.length > 1) {
 				firstInput = line[0];
 				secondInput = line[1];
 				finalInput = firstInput + secondInput;
 			}
+			//get the single letter
 			if (line.length == 1) {
 				firstInput = line[0];
 				finalInput = firstInput;
 			}
 			sequence(finalInput);
 		}
-		
-		//getMyList();
+		//System.out.println(getMyList());
 		checkCircular(getMyList());
+		//orderedList(getMyList());
 	}
 }
