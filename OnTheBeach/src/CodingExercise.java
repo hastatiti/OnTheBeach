@@ -1,14 +1,17 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class CodingExercise {
 	static ArrayList<String> myList = new ArrayList<>();
 	static ArrayList<String> theList = new ArrayList();
 	
 	//	list is in the form of 'a, bc, cf ...' without the signs
-	public static ArrayList<String> sequence(String job) {
+	public static ArrayList<String> createList(String job) {
 		myList.add(job);
 		return myList;
 	}
@@ -17,8 +20,8 @@ public class CodingExercise {
 		return myList;
 	}
 	
+	//	get the first elements from the list. such as a, bc, de... get a, b, d
 	public static ArrayList<String> firstElements(ArrayList<String> myList){
-	
 		for (int i = 0; i < myList.size(); i++) {
 			String a = myList.get(i);
 			char c = a.charAt(0);
@@ -29,6 +32,7 @@ public class CodingExercise {
 	}
 	
 	public static ArrayList<String> orderedList(ArrayList<String> myList){
+		theList = firstElements(getMyList());
 		for (int i = 0; i < myList.size(); i++) {
 			String st = myList.get(i);
 			if(st.length() > 1) {
@@ -40,7 +44,8 @@ public class CodingExercise {
 				theList.add(k, b);
 			}
 		}
-		System.out.println(theList);
+		Set<String> mySet = new LinkedHashSet<>(theList);
+		System.out.println(mySet);
 		return theList;
 	}
 	
@@ -91,15 +96,19 @@ public class CodingExercise {
 		return a ==b;
 	}
 	
-	public static void main(String[] args) {
+	//	read the input from console and call createList method to create a list
+	//	in form of ab, c ,d , ef .... single element for single input line, double for double 
+	public static String consoleInput() {
+		String firstInput,secondInput;
+		String finalInput = null;
+		StringBuilder sb = new StringBuilder();
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Entries (Press 'ctrl d' to exit) : ");
 		while (sc.hasNextLine()) {
 			String rawLine = sc.nextLine();
-			// get the letters line by line
-			String firstInput,secondInput;
-			// and concatenation in form of xy
-			String finalInput = null;
+//			// get the letters line by line
+//			String firstInput,secondInput;
+//			// and concatenation in form of xy
+//			String finalInput = null;
 			
 			String[] line = rawLine.split(" => ");
 			//get the 2 letters 
@@ -113,10 +122,19 @@ public class CodingExercise {
 				firstInput = line[0];
 				finalInput = firstInput;
 			}
-			sequence(finalInput);
+			sb =  sb.append(finalInput).append(" ");
 		}
-		//System.out.println(getMyList());
-		checkCircular(getMyList());
-		//orderedList(getMyList());
+		finalInput = sb.toString();
+		System.out.println(finalInput);
+		return finalInput;
+	}
+	public static void main(String[] args) {
+		System.out.println("Entries (Press 'ctrl d' to exit) : ");
+		Scanner sc = new Scanner(System.in);
+		consoleInput();
+	//	System.out.println(getMyList());
+		//checkCircular(getMyList());
+	//	firstElements(getMyList());
+	//	orderedList(getMyList());
 	}
 }
