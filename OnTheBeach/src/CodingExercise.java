@@ -20,7 +20,7 @@ public class CodingExercise {
 		return myList;
 	}
 	
-	//	get the first elements from the list. such as a, bc, de... get a, b, d
+	//	get the first elements from the list. such as if a, bc, de... get a, b, d
 	public static ArrayList<String> firstElements(ArrayList<String> myList){
 		for (int i = 0; i < myList.size(); i++) {
 			String a = myList.get(i);
@@ -31,6 +31,10 @@ public class CodingExercise {
 		return theList;
 	}
 	
+	//	2 lists : myList and theList. myList in form of a, bc, d, ef ... theList first elements of
+	//	myList is in form of a, b, d , e ...
+	//	get the second char of elements in myList and change positions in theList.
+	// 	such as 'bc' is for b => c that c comes before b that we rearrange accordingly
 	public static ArrayList<String> orderedList(ArrayList<String> myList){
 		theList = firstElements(getMyList());
 		for (int i = 0; i < myList.size(); i++) {
@@ -44,6 +48,7 @@ public class CodingExercise {
 				theList.add(k, b);
 			}
 		}
+		//remove duplicate elements
 		Set<String> mySet = new LinkedHashSet<>(theList);
 		System.out.println(mySet);
 		return theList;
@@ -125,14 +130,13 @@ public class CodingExercise {
 			sb =  sb.append(finalInput).append(" ");
 		}
 		finalInput = sb.toString();
-		System.out.println(finalInput);
 		return finalInput;
 	}
 	public static void main(String[] args) {
 		System.out.println("Entries (Press 'ctrl d' to exit) : ");
 		Scanner sc = new Scanner(System.in);
-		consoleInput();
-	//	System.out.println(getMyList());
+		createList(consoleInput());
+		System.out.println(getMyList());
 		//checkCircular(getMyList());
 	//	firstElements(getMyList());
 	//	orderedList(getMyList());
