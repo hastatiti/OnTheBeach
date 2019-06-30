@@ -104,16 +104,15 @@ public class CodingExercise {
 	//	read the input from console and call createList method to create a list
 	//	in form of ab, c ,d , ef .... single element for single input line, double for double 
 	public static String consoleInput() {
+		// if a => b firstInput is a, secondInput is b
 		String firstInput,secondInput;
+		// a + b
 		String finalInput = null;
 		StringBuilder sb = new StringBuilder();
+		
 		Scanner sc = new Scanner(System.in);
 		while (sc.hasNextLine()) {
 			String rawLine = sc.nextLine();
-//			// get the letters line by line
-//			String firstInput,secondInput;
-//			// and concatenation in form of xy
-//			String finalInput = null;
 			
 			String[] line = rawLine.split(" => ");
 			//get the 2 letters 
@@ -132,13 +131,15 @@ public class CodingExercise {
 		finalInput = sb.toString();
 		return finalInput;
 	}
+	
+	//	Testing
 	public static void main(String[] args) {
 		System.out.println("Entries (Press 'ctrl d' to exit) : ");
 		Scanner sc = new Scanner(System.in);
-		createList(consoleInput());
-		System.out.println(getMyList());
-		//checkCircular(getMyList());
-	//	firstElements(getMyList());
-	//	orderedList(getMyList());
+		//	createList(consoleInput());	//Starting point of the program
+		//	System.out.println(getMyList()); //check the list
+		//	checkCircular(getMyList());	//exception on circular
+		//	firstElements(getMyList());	//check first elements 
+		//	orderedList(getMyList());	//final product, ordered list
 	}
 }
