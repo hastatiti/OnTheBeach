@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -7,21 +8,25 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class CodingExercise {
-	static ArrayList<String> myList = new ArrayList<>();
-	static ArrayList<String> theList = new ArrayList();
+	 static ArrayList<String> myList = new ArrayList<>();
+	 static ArrayList<String> theList = new ArrayList();
+	 static String finalInput;
 	
 	//	list is in the form of 'a, bc, cf ...' without the signs
-	public static ArrayList<String> createList(String job) {
-		myList.add(job);
+	public static ArrayList<String> createList(String finalInput) {
+		String [] s = finalInput.split(" ");
+		for(String st : s) {
+			myList.add(st);
+		}
 		return myList;
 	}
 
-	public static ArrayList<String> getMyList() {
+	public static  ArrayList<String> getMyList() {
 		return myList;
 	}
 	
 	//	get the first elements from the list. such as if a, bc, de... get a, b, d
-	public static ArrayList<String> firstElements(ArrayList<String> myList){
+	public static  ArrayList<String> firstElements(ArrayList<String> myList){
 		for (int i = 0; i < myList.size(); i++) {
 			String a = myList.get(i);
 			char c = a.charAt(0);
@@ -35,7 +40,8 @@ public class CodingExercise {
 	//	myList is in form of a, b, d , e ...
 	//	get the second char of elements in myList and change positions in theList.
 	// 	such as 'bc' is for b => c that c comes before b that we rearrange accordingly
-	public static ArrayList<String> orderedList(ArrayList<String> myList){
+	public static  ArrayList<String> orderedList(ArrayList<String> unOrderedList){
+		myList = unOrderedList;
 		theList = firstElements(getMyList());
 		for (int i = 0; i < myList.size(); i++) {
 			String st = myList.get(i);
@@ -50,12 +56,12 @@ public class CodingExercise {
 		}
 		//remove duplicate elements
 		Set<String> mySet = new LinkedHashSet<>(theList);
-		System.out.println(mySet);
+		theList = new ArrayList<>(mySet);
 		return theList;
 	}
 	
 	//	Check for circular dependencies. Exception thrown
-	public static void checkCircular(List<String> myList) {
+	public static  void checkCircular(List<String> myList) {
 		String sb = "";
 		String s1 = null, s2 = null;
 		
@@ -73,7 +79,7 @@ public class CodingExercise {
 					//	ab, bc ,de  b==b new string is abbc now compare abbc with de c != e so stop
 					if (s1.length() > 1 && s2.length() > 1 && checkChar(s1, s2)) {
 						sb += s1 + s2;
-						System.out.println(sb);
+					//	System.out.println(sb);
 						//	with the newly created string above call findCircular()
 						// check if the newly created string starts and ends with same char
 						if (findCircular(sb)) {
@@ -86,7 +92,7 @@ public class CodingExercise {
 	}
 	
 	//check last char of an element with first char of the other
-	public static boolean  checkChar(String s1, String s2) {
+	public static  boolean  checkChar(String s1, String s2) {
 		int len = s1.length();
 		char c1 = s1.charAt(len-1);
 		char c2 = s2.charAt(0);
@@ -94,7 +100,7 @@ public class CodingExercise {
 	}
 	
 	//check if string starts and ends with same letter
-	public static boolean findCircular(String s) {
+	public  static boolean findCircular(String s) {
 		int len = s.length();
 		char a = s.charAt(0);
 		char b = s.charAt(len - 1);
@@ -107,7 +113,7 @@ public class CodingExercise {
 		// if a => b firstInput is a, secondInput is b
 		String firstInput,secondInput;
 		// a + b
-		String finalInput = null;
+		//String finalInput = null;
 		StringBuilder sb = new StringBuilder();
 		
 		Scanner sc = new Scanner(System.in);
@@ -135,11 +141,12 @@ public class CodingExercise {
 	//	Testing
 	public static void main(String[] args) {
 		System.out.println("Entries (Press 'ctrl d' to exit) : ");
-		Scanner sc = new Scanner(System.in);
-		//	createList(consoleInput());	//Starting point of the program
-		//	System.out.println(getMyList()); //check the list
-		//	checkCircular(getMyList());	//exception on circular
-		//	firstElements(getMyList());	//check first elements 
-		//	orderedList(getMyList());	//final product, ordered list
+	//	Scanner sc = new Scanner(System.in);
+			
+//			createList(consoleInput());			//Starting point of the program
+//			System.out.println(getMyList());	//check the list
+//			checkCircular(getMyList());			//exception on circular
+//			firstElements(getMyList());			//check first elements 
+//			orderedList(a);			//final product, ordered list
 	}
 }
