@@ -38,6 +38,7 @@ class CodingExerciseTest {
 		
 		ArrayList<String> unOrderedList3 = new ArrayList<>(Arrays.asList("a", "bc", "cf"));
 		ArrayList<String> orderedList3 = new ArrayList<>(Arrays.asList("a", "b", "c", "f"));
+		System.out.print("FAILED!!! Result : " +  orderedList3 + " Expected  : ");
 		assertNotEquals(orderedList3, new CodingExercise().orderedList(unOrderedList3));
 	}
 	
