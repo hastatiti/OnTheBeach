@@ -1,3 +1,4 @@
+package uk.co.onthebeach;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -16,9 +17,9 @@ class CodingExerciseTest {
 		List<String> l1 = new ArrayList<>(Arrays.asList("a", "bc", "d", "ef"));
 		assertEquals(l1, new CodingExercise().createList(s1));
 		
-//		String s2 = "a b d";
-//		List<String> l2 = new ArrayList<>(Arrays.asList("a", "b", "d"));
-//		assertEquals(l2,new CodingExercise().createList(s2));
+		String s2 = "a b d";
+		List<String> l2 = new ArrayList<>(Arrays.asList("a", "b", "d"));
+		assertEquals(l2,new CodingExercise().createList(s2));
 	}
 	
 	@Test
