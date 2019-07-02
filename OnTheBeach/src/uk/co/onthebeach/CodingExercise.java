@@ -8,12 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-public class CodingExercise {
+public class CodingExercise implements CodingExerciseService {
 	ArrayList<String> myList = new ArrayList<>();
 	ArrayList<String> theList = new ArrayList();
 	String finalInput;
 
 	//	list is in the form of 'a, bc, cf ...' without the signs
+	@Override
 	public ArrayList<String> createList(String finalInput) {
 		String [] s = finalInput.split(" ");
 		for(String st : s) {
@@ -22,11 +23,14 @@ public class CodingExercise {
 		return myList;
 	}
 
+	@Override
 	public ArrayList<String> getMyList() {
 		return myList;
 	}
 	
 	//	get the first elements from the list. such as if a, bc, de... get a, b, d
+	// 	orderedList() will use first elements to organize the list
+	@Override
 	public ArrayList<String> firstElements(ArrayList<String> myList){
 		for (int i = 0; i < myList.size(); i++) {
 			String a = myList.get(i);
@@ -41,6 +45,7 @@ public class CodingExercise {
 	//	theList first elements of myList is in form of a, b, d , e ...
 	//	get the second char of elements in myList and change positions in theList.
 	// 	such as 'bc' is for b => c that c comes before b that we rearrange accordingly
+	@Override
 	public ArrayList<String> orderedList(ArrayList<String> unOrderedList){
 		myList = unOrderedList;
 		theList = firstElements(getMyList());
@@ -63,6 +68,7 @@ public class CodingExercise {
 	}
 	
 	//	Check for circular dependencies
+	@Override
 	public void checkCircular(List<String> myList) {
 		String sb = "";
 		String s1 = null, s2 = null;
@@ -95,6 +101,7 @@ public class CodingExercise {
 	}
 	
 	//check last char of an element with first char of the other
+	@Override
 	public boolean  checkChar(String s1, String s2) {
 		int len = s1.length();
 		char c1 = s1.charAt(len-1);
@@ -103,6 +110,7 @@ public class CodingExercise {
 	}
 	
 	//check if string starts and ends with same letter
+	@Override
 	public boolean findCircular(String s) {
 		int len = s.length();
 		char a = s.charAt(0);
@@ -112,6 +120,7 @@ public class CodingExercise {
 	
 	//	read the input from console and call createList method to create a list
 	//	in form of ab, c ,d , ef .... single element for single input line, double for double 
+	@Override
 	public String consoleInput() {
 		// if a => b firstInput is a, secondInput is b
 		String firstInput,secondInput;
@@ -124,7 +133,7 @@ public class CodingExercise {
 			String rawLine = sc.nextLine();
 			
 			String[] line = rawLine.split(" => ");
-			//get the 2 letters 
+			//get 2 letters 
 			if (line.length > 1) {
 				firstInput = line[0];
 				secondInput = line[1];
@@ -141,6 +150,7 @@ public class CodingExercise {
 		return finalInput;
 	}
 	
+	@Override
 	public void start() {
 		createList(consoleInput());		//get user input, create list
 		checkCircular(getMyList());		//Error message on circular
