@@ -90,7 +90,7 @@ public class CodingExercise implements CodingExerciseService {
 					//	System.out.println(sb);
 						//	with the newly created string above call findCircular()
 						// check if the newly created string starts and ends with same char
-						if (findCircular(sb)) {
+						if (isCircular(sb)) {
 							System.err.println("Circular Dependecy Detected !!!");
 							System.exit(0);
 						}
@@ -102,7 +102,7 @@ public class CodingExercise implements CodingExerciseService {
 	
 	//check last char of an element with first char of the other
 	@Override
-	public boolean  checkChar(String s1, String s2) {
+	public boolean checkChar(String s1, String s2) {
 		int len = s1.length();
 		char c1 = s1.charAt(len-1);
 		char c2 = s2.charAt(0);
@@ -111,7 +111,7 @@ public class CodingExercise implements CodingExerciseService {
 	
 	//check if string starts and ends with same letter
 	@Override
-	public boolean findCircular(String s) {
+	public boolean isCircular(String s) {
 		int len = s.length();
 		char a = s.charAt(0);
 		char b = s.charAt(len - 1);

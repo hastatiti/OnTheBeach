@@ -27,7 +27,7 @@ public interface CodingExerciseService {
 	boolean checkChar(String s1, String s2);
 
 	//	check if string starts and ends with same letter
-	boolean findCircular(String s);
+	boolean isCircular(String s);
 
 	//	read the input from console and call createList method to create a list
 	//	in form of ab, c ,d , ef .... single element for single input line, double for double 

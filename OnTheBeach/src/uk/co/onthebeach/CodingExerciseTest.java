@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
@@ -27,14 +28,33 @@ class CodingExerciseTest {
 	void listShouldBeOrdered() {
 		ArrayList<String> unOrderedList1 = new ArrayList<>(Arrays.asList("a", "bc"));
 		ArrayList<String> orderedList1 = new ArrayList<>(Arrays.asList("a", "c", "b"));
+		System.out.print("Expected : " +  orderedList1 + " Result  : ");
 		assertEquals(orderedList1, new CodingExercise().orderedList(unOrderedList1));
 		
 		ArrayList<String> unOrderedList2 = new ArrayList<>(Arrays.asList("a", "bc", "cf"));
 		ArrayList<String> orderedList2 = new ArrayList<>(Arrays.asList("a", "f", "c", "b"));
+		System.out.print("Expected : " +  orderedList2 + " Result  : ");
 		assertEquals(orderedList2, new CodingExercise().orderedList(unOrderedList2));
+		
+		ArrayList<String> unOrderedList3 = new ArrayList<>(Arrays.asList("a", "bc", "cf"));
+		ArrayList<String> orderedList3 = new ArrayList<>(Arrays.asList("a", "b", "c", "f"));
+		assertNotEquals(orderedList3, new CodingExercise().orderedList(unOrderedList3));
+	}
+	
+	@Test
+	void testIsCircular() {
+		assertTrue(new CodingExercise().isCircular("abcda"));
+		assertFalse(new CodingExercise().isCircular("abcd"));
+	}
+	
+	@Test
+	void testCheckChar() {
+		assertTrue(new CodingExercise().checkChar("ab", "bc"));
+		assertFalse(new CodingExercise().checkChar("ab", "cd"));
+
 	}
 }
-
+	
 //@Test
 ////	please uncomment/comment for user inputs (java does not support multiline:))
 //void consoleInputShouldReturnSingleString() {
