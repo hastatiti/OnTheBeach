@@ -8,6 +8,22 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+/*
+This class gets user input in required form, transforms it into a single line String such as 
+a => 
+transformed into 'a'
+a => b
+c => 
+transformed into 'ab c' 
+single char for single entry, double char for double. Single String used to create a list then
+Circular dependecies are checked , if list in form of  'ab, bc, ca' contains elements starts/ends with 
+same char then a new string is created, for example this list creates a String = abbc then String = abbcca
+starts and ends with char 'a' dependency found! 
+If no dependecies then gets the first chars from our list 'ab, bc, cf' and gets the first chars from elements
+into our final orderedList such as 'a, b, c' and adds swaps positions of elements occordinly
+*/
+
+
 public class CodingExercise implements CodingExerciseService {
 	ArrayList<String> myList = new ArrayList<>();
 	ArrayList<String> theList = new ArrayList();
@@ -100,7 +116,7 @@ public class CodingExercise implements CodingExerciseService {
 		}
 	}
 	
-	//check last char of an element with first char of the other
+	//	check last char of an element with first char of the other
 	@Override
 	public boolean checkChar(String s1, String s2) {
 		int len = s1.length();
@@ -109,7 +125,7 @@ public class CodingExercise implements CodingExerciseService {
 		return c1 == c2;
 	}
 	
-	//check if string starts and ends with same letter
+	//	check if string starts and ends with same letter
 	@Override
 	public boolean isCircular(String s) {
 		int len = s.length();
