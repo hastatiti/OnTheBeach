@@ -17,9 +17,9 @@ c =>
 transformed into 'ab c' 
 single char for single entry, double char for double. Single String used to create a list then
 Circular dependecies are checked , if list in form of  'ab, bc, ca' contains elements starts/ends with 
-same char then a new string is created, for example this list creates a String = abbc then String = abbcca
+same char then new string is created, for example this list creates a String = abbc then String = abbcca
 starts and ends with char 'a' dependency found! 
-If no dependecies then gets the first chars from our list 'ab, bc, cf' and gets the first chars from elements
+If no dependecies then gets the first chars from our list 'ab, bc, cf' 
 into our final orderedList such as 'a, b, c' and adds swaps positions of elements occordinly
 */
 
