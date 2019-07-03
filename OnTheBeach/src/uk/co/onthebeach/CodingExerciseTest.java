@@ -52,22 +52,14 @@ class CodingExerciseTest {
 	void testCheckChar() {
 		assertTrue(new CodingExercise().checkChar("ab", "bc"));
 		assertFalse(new CodingExercise().checkChar("ab", "cd"));
-
+	}
+	
+	@Test
+	void testIsDependendOnThemselves() {
+		ArrayList<String> l1 = new ArrayList<>(Arrays.asList("a", "bc", "cc"));
+		assertTrue(new CodingExercise(). isDependOnThemselves(l1));
+		ArrayList<String> l2 = new ArrayList<>(Arrays.asList("a", "bc", "cd"));
+		assertFalse(new CodingExercise(). isDependOnThemselves(l2));
+		
 	}
 }
-	
-//@Test
-////	please uncomment/comment for user inputs (java does not support multiline:))
-//void consoleInputShouldReturnSingleString() {
-//	System.out.println("Copy paste , Comment/Uncomment for the inputs  (Press 'ctrl d' to exit) : ");
-//	Scanner sc = new Scanner(System.in);
-////	a => 
-////	b => c
-//	assertEquals("a bc ", ce.consoleInput());
-//	
-////	b => c
-////	d
-////	e
-////	f => j
-////	assertEquals("bc d e fj ", ce.consoleInput());
-//}

@@ -20,6 +20,9 @@ public interface CodingExerciseService {
 	// 	such as 'bc' is for b => c that c comes before b that we rearrange accordingly
 	ArrayList<String> orderedList(ArrayList<String> unOrderedList);
 
+	//	Check if dependent on themselves
+	boolean isDependOnThemselves(List<String> l);
+	
 	//	Check for circular dependencies
 	void checkCircular(List<String> myList);
 
